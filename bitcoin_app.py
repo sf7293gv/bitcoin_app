@@ -1,7 +1,7 @@
 import requests
 from pprint import pprint
 
-from test_bitcoin import BitCoinError
+# from test_bitcoin import BitCoinError
 
 url = 'https://api.coindesk.com/v1/bpi/currentprice.json'
 # pprint(rates)

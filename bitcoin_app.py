@@ -42,14 +42,18 @@ def get_result_from_api(url):
         raise BitCoinError('Error proccesing response from api') from e
 
 def get_bitcoins():
-    try:
+    # try:
+    #     user_bitcoin = float(input('How much money bitcoin do you want to turn into dollars? '))
+    #     if user_bitcoin >= 0:
+    #         return user_bitcoin
+    #     else:
+    #         print('Enter a positive bitcoin amount')
+    # except ValueError:
+    #     print('Enter a number')
+
+    while True:
         user_bitcoin = float(input('How much money bitcoin do you want to turn into dollars? '))
-        if user_bitcoin >= 0:
-            return user_bitcoin
-        else:
-            print('Enter a positive bitcoin amount')
-    except ValueError:
-        print('Enter a number')
+
 
 def get_rates(res):
     try:

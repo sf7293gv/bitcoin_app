@@ -43,15 +43,15 @@ class TestBitCoin(TestCase):
     def test_non_positive_input(self, mock_input):
         bitcoins = bitcoin_app.get_bitcoins()
         self.assertEqual(0.22221, bitcoins)
+        with self.assertRaises(ValueError):
+            
 
-    @patch('bitcoin_app.print')
+    @patch('builtins.print')
     def test_display(self, mock_print):
         bcns = 14
         dollars = 12
-        expected_result = 'Today 14.00 Bitcoin is equal $12.00'
-
-        returned = bitcoin_app.show(bcns, dollars)
-        mock_print.asser_has_calls(expected_result)
+        bitcoin_app.show(bcns, dollars)
+        mock_print.assert_called_once_with('Today, 14.00 is equal to $12.00')
 
     @patch('builtins.input', side_effect=['moeeeayaya', '1lol22',':P', '1'])
     def test_string_and_symbols(self, mock_input):

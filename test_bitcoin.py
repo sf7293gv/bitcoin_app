@@ -43,7 +43,7 @@ class TestBitCoin(TestCase):
     def test_non_positive_input(self, mock_input):
         bitcoins = bitcoin_app.get_bitcoins()
         self.assertEqual(0.22221, bitcoins)
-        with self.assertRaises(ValueError):
+
             
 
     @patch('builtins.print')

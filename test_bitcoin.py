@@ -36,6 +36,27 @@ class TestBitCoin(TestCase):
     def test_bad_response_from_server(self, mock_api_call):
         with self.assertRaises(BitCoinError):             
             bitcoin_app.convert_dollars_to_bitcoin(100, 'example url')
+    
+    
+
+    @patch('builtins.input', side_effect=['-100', '-1','-0.006', '0.22221'])
+    def test_non_positive_input(self, mock_input):
+        bitcoins = bitcoin_app.get_bitcoins()
+        self.assertEqual(0.22221, bitcoins)
+
+    @patch('bitcoin_app.print')
+    def test_display(self, mock_print):
+        bcns = 14
+        dollars = 12
+        expected_result = 'Today 14.00 Bitcoin is equal $12.00'
+
+        returned = bitcoin_app.show(bcns, dollars)
+        mock_print.asser_has_calls(expected_result)
+
+    @patch('builtins.input', side_effect=['moeeeayaya', '1lol22',':P', '1'])
+    def test_string_and_symbols(self, mock_input):
+        bitcoins = bitcoin_app.get_bitcoins()
+        self.assertEqual(1, bitcoins)
 
 
 if __name__ == '__main__':
